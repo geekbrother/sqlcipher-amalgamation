@@ -1,0 +1,58 @@
+{
+    "authors": "Comm Technologies, Inc.",
+    "default_subspecs": "standard",
+    "description": "SQLCipher sources amalgamation file for using in Xcode projects.",
+    "homepage": "https://github.com/geekbrother/sqlcipher-amalgamation",
+    "license": "MIT",
+    "name": "SQLCipher-Amalgamation",
+    "platforms": {
+        "ios": "11.0"
+    },
+    "requires_arc": false,
+    "source": {
+        "git": "https://github.com/geekbrother/sqlcipher-amalgamation.git",
+        "tag": "v4.4.3"
+    },
+    "summary": "Full Database Encryption for SQLite.",
+    "version": "4.4.3",
+    "module_name": "SQLCipher",
+    "dependencies": {
+        "OpenSSL-Universal": []
+    },
+    "frameworks": [
+        "Foundation"
+    ],
+    "subspecs": [
+        {
+            "compiler_flags": [
+                "-DNDEBUG",
+                "-DSQLITE_HAS_CODEC",
+                "-DSQLITE_TEMP_STORE=2"
+            ],
+            "name": "common",
+            "source_files": "src/sqlite3.{h,c}",
+            "header_dir": "src",
+            "xcconfig": {
+                    "USE_HEADERMAP": "NO",
+                    "GCC_PREPROCESSOR_DEFINITIONS": "$(inherited) SQLITE_HAS_CODEC=1 SQLITE_TEMP_STORE=2",
+                    "OTHER_CFLAGS": "$(inherited) -DSQLITE_HAS_CODEC -DSQLITE_TEMP_STORE=2 -DSQLCIPHER_CRYPTO_OPENSSL"
+            }
+        },
+        {
+            "dependencies": {
+                "SQLCipher-Amalgamation/common": []
+            },
+            "name": "standard"
+        },
+        {
+            "compiler_flags": "",
+            "dependencies": {
+                "SQLCipher-Amalgamation/common": []
+            },
+            "name": "unlock_notify",
+            "xcconfig": {
+                "OTHER_CFLAGS": "$(inherited)"
+            }
+        }
+    ]
+}
