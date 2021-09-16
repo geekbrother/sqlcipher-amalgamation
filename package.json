@@ -1,6 +1,6 @@
 {
   "name": "@commapp/sqlcipher-amalgamation",
-  "version": "4.4.3",
+  "version": "4.4.3a",
   "description": "SQLCipher amalgamation file",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
